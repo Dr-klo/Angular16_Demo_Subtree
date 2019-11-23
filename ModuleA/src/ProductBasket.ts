@@ -1,12 +1,12 @@
-﻿import {IProduct} from "@common/api/IProduct";
+﻿import {Product} from "@common/api/Product";
 import {IUser} from "../../Contracts/src/api/IUser";
 
 export class ProductBasket {
-    protected products:  IProduct[];
+    protected products:  Product[];
     constructor(private owner: IUser){
         this.products = new Array();
     }
-    public Add(product: IProduct): void{
+    public Add(product: Product): void{
         let existingProduct = this.products.find(p=>p.id == product.id);
         if (existingProduct) {
             existingProduct.count+=product.count;
@@ -20,7 +20,7 @@ export class ProductBasket {
             this.products.splice(index, 1);
         }
     }
-    public getList(): IProduct[] {
+    public getList(): Product[] {
         return this.products.slice();
     }
     public ToString():string {
